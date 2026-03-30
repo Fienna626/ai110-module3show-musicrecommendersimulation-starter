@@ -63,29 +63,15 @@ Prompts:
 
 Where the system struggles or behaves unfairly. 
 
-Prompts:  
-
-- Features it does not consider  
-- Genres or moods that are underrepresented  
-- Cases where the system overfits to one preference  
-- Ways the scoring might unintentionally favor some users  
+The current system gives a strong advantage to genre because genre matches are worth twice as much as mood. That means the same genre can dominate recommendations even when the mood or energy is not a great fit. The dataset is small and skewed toward pop, lofi, and chill songs, so underrepresented genres like metal or classical are less likely to be recommended. The energy gap is calculated as a simple direct difference, so users with conflicting preferences such as high energy but a moody mood can get recommendations that feel inconsistent. The acoustic bonus also biases the system toward acoustic songs for users who set that flag, which may reduce diversity.
 
 ---
 
-## 7. Evaluation  
+## 7. Evaluation 
 
 How you checked whether the recommender behaved as expected. 
 
-Prompts:  
-
-- Which user profiles you tested  
-- What you looked for in the recommendations  
-- What surprised you  
-- Any simple tests or comparisons you ran  
-
-No need for numeric metrics unless you created some.
-
----
+I tested several user profiles, including High-Energy Pop, Chill Lofi, and Deep Intense Rock. I also added a conflicting profile with high energy and a moody jazz preference to see if the system could handle edge cases. To evaluate the scoring, I looked for whether top recommendations matched the expected genre, mood, and energy. The main surprise was that the same strong genre match can make one song appear near the top across multiple profiles. I also ran an energy-weighted experiment and observed that increasing energy importance changed the top results more than changing the mood weight.
 
 ## 8. Future Work  
 

@@ -114,3 +114,22 @@ the system may favor songs with the right energy but wrong genre/mood
 [x]Run a small data experiment
 [x]Identify one bias or limitation
 [x]Interpret surprising output
+
+### Phase 4 Results
+I tested four user profiles to stress check the system:
+- **High-Energy Pop**: `{'genre': 'pop', 'mood': 'happy', 'energy': 0.9}`
+- **Chill Lofi**: `{'genre': 'lofi', 'mood': 'chill', 'energy': 0.35, 'likes_acoustic': True}`
+- **Deep Intense Rock**: `{'genre': 'rock', 'mood': 'intense', 'energy': 0.95}`
+- **Conflicting High-Energy Sad**: `{'genre': 'jazz', 'mood': 'moody', 'energy': 0.9}`
+
+The system ranked **Sunrise City** first for High-Energy Pop because it matched both `genre` and `mood`, and its energy value was very close to the target. That is a good example of the scoring rule working as intended: genre gives a strong base score, mood adds a bonus, and energy closeness refines the ranking.
+
+For the small experiment, I changed the weights so energy was twice as important as genre and mood (`genre = 1.0`, `mood = 1.0`, `energy = 2.0`). The Chill Lofi profile still ranked `Library Rain` first, but the overall ranking became more sensitive to how close each song's energy value was to the target.
+
+A clear limitation is that the system still over-prioritizes genre matches. In the conflicting profile, `Coffee Shop Stories` ranked first mostly because it matched `jazz` even though the mood and energy preference were not fully aligned. This shows a bias toward strong categorical matches in a small dataset.
+
+A surprising output was that the same genre-strong songs can remain near the top across multiple profiles when the dataset is small. That means the model can feel less diverse than expected, especially for genres like pop and lofi that dominate the catalog.
+
+## Phase 5: Model Card (Review)
+[x]Skim required sections
+[x]Understand grading expectations
